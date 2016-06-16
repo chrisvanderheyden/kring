@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jq.js"></script>    
+    <script src="/javascripts/masonry.js"></script>
+    <script src="/javascripts/imagesloaded.js"></script>
+  </head>
+  <body>
+    <h1>De Kring</h1>
+    <div class="container">
+    <div class="grid">
+    <div class="grid-sizer"></div>
+      <% images.forEach(function(image) { %>
+      <div  class="grid-item"><div class="spacer"><img width="100%" src="<%= image.src %>" /></div></div>
+      <% }); %>
+
+     </div>
+    </div>
+    </div>    
+  </body>
+  <script>
+  // init Masonry
+var $grid = $('.grid').masonry({
+   itemSelector: '.grid-item',
+  // use element for option
+  columnWidth: '.grid-sizer',
+  
+  percentPosition: true
+  
+});
+// layout Masonry after each image loads
+$grid.imagesLoaded().progress( function() {
+  $grid.masonry('layout');
+});
+  </script>  
+</html>

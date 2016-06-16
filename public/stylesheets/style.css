@@ -1,0 +1,18 @@
+body {
+  background:black;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1 {color:white}
+.container { padding: 5px; background: white}
+.grid { background: white;  }
+.grid-sizer,
+.grid-item { width: 20%; background: white;  }
+/* 2 columns */
+.grid-item--width2 { width: 40%; }
+.spacer {margin : 5px; }
