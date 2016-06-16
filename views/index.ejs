@@ -6,6 +6,8 @@
     <script src="/javascripts/jq.js"></script>    
     <script src="/javascripts/masonry.js"></script>
     <script src="/javascripts/imagesloaded.js"></script>
+  
+
   </head>
   <body>
     <h1>De Kring</h1>
@@ -13,7 +15,8 @@
     <div class="grid">
     <div class="grid-sizer"></div>
       <% images.forEach(function(image) { %>
-      <div  class="grid-item<% if ( Math.floor(Math.random() * randomness)  == 0 ) { console.log(randomness); %> grid-item--width2<%}%>"><div class="spacer"><img width="100%" src="<%= image.src %>" /></div></div>
+      <div  class="grid-item<% if ( Math.floor(Math.random() * randomness)  == 0 ) { console.log(randomness); %> grid-item--width2<%}%>"><div class="spacer">
+      <a href="<%= image.src %>" data-lightbox="image"><img src="<%= image.src %>" /></a></div></div>
       <% }); %>
 
      </div>
@@ -35,4 +38,5 @@ $grid.imagesLoaded().progress( function() {
   $grid.masonry('layout');
 });
   </script>  
+    <script src="/javascripts/lb.js"></script>
 </html>

@@ -17,8 +17,8 @@ function shuffleArray(d) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  var randomness = 5;
-  if(req.query.r !== null)
+  var randomness = -1;
+  if(req.query.r !== undefined)
     randomness = req.query.r;
     
   var dir = rootpath + '/public/images/fotos/';
