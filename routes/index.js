@@ -17,6 +17,10 @@ function shuffleArray(d) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
+  var randomness = 5;
+  if(req.query.r !== null)
+    randomness = req.query.r;
+    
   var dir = rootpath + '/public/images/fotos/';
   console.log(dir);
 
@@ -33,7 +37,7 @@ router.get('/', function(req, res, next) {
       error = e;
     }
 
-    res.render('index', { title: 'Express', images : shuffleArray(img), error: error });
+    res.render('index', {randomness: randomness, title: 'Express', images : shuffleArray(img), error: error });
 
   });
 });

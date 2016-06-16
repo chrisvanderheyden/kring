@@ -13,7 +13,7 @@
     <div class="grid">
     <div class="grid-sizer"></div>
       <% images.forEach(function(image) { %>
-      <div  class="grid-item<% if ( Math.floor(Math.random() * (5 - 1)) + 1 == 2 ) {%> grid-item--width2<%}%>"><div class="spacer"><img width="100%" src="<%= image.src %>" /></div></div>
+      <div  class="grid-item<% if ( Math.floor(Math.random() * randomness)  == 0 ) { console.log(randomness); %> grid-item--width2<%}%>"><div class="spacer"><img width="100%" src="<%= image.src %>" /></div></div>
       <% }); %>
 
      </div>
