@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var rootpath = require('app-root-path');
- 
+const photo_Lib = require('../modules/photolib');
+var photoLib = new photo_Lib();
+
 
 function shuffleArray(d) {
   for (var c = d.length - 1; c > 0; c--) {
@@ -15,7 +17,49 @@ function shuffleArray(d) {
 };
 
 
-router.get('/api/photos/', function(req,res,next){
 
+router.get('/photos/:folder', function(req,res,next){
+  var folder = req.params.folder;
+    photoLib.getPhotos(folder, (e,photos)=>{
+    if(!e){
+      res.json(photos);    
+    }
+    else{
+        console.log(e);
+        res.status(e.status).json(e);
+    }
+  });
+  res.json(photos);
 
 });
+
+
+router.get('/photos', function(req,res,next){
+  var folder = req.params.folder;
+  photoLib.getPhotos('all', (e,photos)=>{
+    if(!e){
+      var t =  photoLib.shuffle(photos)
+      res.json(t);    
+    }
+     else{
+        console.log(e);
+        res.status(e.status).json(e);
+    }
+  });
+  
+});
+
+router.get('/photos/init', function(req,res,next){  
+  var photos = photoLib.initialize();
+  res.end('OK')
+});
+
+
+
+
+router.get('/folders', function(req,res,next){
+  var folders = photoLib.getFolders(); 
+  res.json(folders);
+
+});
+module.exports = router;
