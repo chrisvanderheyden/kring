@@ -21,9 +21,22 @@ function shuffle(arr){
   });
 }
 
+function randomSize(data){
+   var randomness = <%= randomness %>;
+    data.forEach(function(d) {
+      if ( Math.floor(Math.random() * randomness)  == 0 ){
+        d.sizeclass = ' grid-item--width2';
+      }
+      else
+        d.sizeclass = '';    
+    });
+}
+
 function loadData(){
-    $.get( "/api/photos", function( data ) {
+
+    $.get( "/api/photos", function( data ) {     
       data = shuffle(data);
+      randomSize(data);
       var grid =  $('#gg');
       var ejs = new EJS({url: '/views/gallery.ejs'});      
       var html = jQuery( ejs.render({images:data})); 

@@ -27,7 +27,7 @@ router.get('/', function(req, res, next){
 
 /* GET home page. */
 router.get('/gallerij/:folder', function(req, res, next) {
-  var randomness = -1;
+  var randomness = 5;
   var folder = req.params.folder;
   res.para
   if(req.query.r !== undefined)
