@@ -16,10 +16,10 @@ router.get('/', function(req, res, next){
          
       if(!e){
         var images = photoLib.shuffle(photos);
-        res.render('index', {randomness: randomness, title: 'Dekring' , images : images, error: null });   
+        res.render('gallery', {randomness: randomness, title: 'Dekring' , images : images, error: null });   
       }
       else{
-        res.render('index', {randomness: randomness, title: 'Dekring' , error: e.message });
+        res.render('gallery', {randomness: randomness, title: 'Dekring' , error: e.message });
       } 
   });    
 });
@@ -36,10 +36,10 @@ router.get('/gallerij/:folder', function(req, res, next) {
          
       if(!e){
         var images = photoLib.shuffle(photos);
-        res.render('index', {randomness: randomness, title: 'Dekring' + folder, images : images, error: null });   
+        res.render('gallery', {randomness: randomness, title: 'Dekring' + folder, images : images, error: null });   
       }
       else{
-        res.render('index', {randomness: randomness, title: 'Dekring' + folder, error: e.message });
+        res.render('gallery', {randomness: randomness, title: 'Dekring' + folder, error: e.message });
       } 
   });    
 });

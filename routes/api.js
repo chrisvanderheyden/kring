@@ -47,8 +47,9 @@ router.get('/photos', function(req,res,next){
   
 });
 
-router.get('/photos/init', function(req,res,next){  
+router.get('/init', function(req,res,next){  
   var photos = photoLib.initialize();
+  res.status(200);
   res.end('OK')
 });
 

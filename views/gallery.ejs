@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jq.js"></script>    
+    <script src="/javascripts/masonry.js"></script>
+    <script src="/javascripts/imagesloaded.js"></script>
+    <script src="/javascripts/ejs.js"></script>
+
+  </head>
+  <body>
+    <h1>De Kring</h1>     
+    <div class="container">
+      <div class="grid" id="gg">
+        <div class="grid-sizer"></div>
+      </div>
+    </div>
+    <button id="loadButton">Load more</button>    
+  </body>
+<script>
+function loadData(){
+    $.get( "/api/photos", function( data ) {
+      var grid =  $('#gg');
+      var ejs = new EJS({url: '/views/gallery.ejs'});      
+      var html = jQuery( ejs.render({images:data})); 
+      
+      html.imagesLoaded(function(){
+        grid.append(html);
+        grid.masonry('appended',html);
+      });                 
+    });
+}
+
+$( document ).ready(function(){
+
+var $grid = $('.grid').masonry({
+   itemSelector: '.grid-item',
+  // use element for option
+  columnWidth: '.grid-sizer',  
+  percentPosition: true
+  
+});
+
+    var win = $(window);
+    win.scroll(function() {
+      if ($(document).height() - win.height() == win.scrollTop()) {
+        loadData();
+      }
+    });
+	  loadData();
+ });
+
+</script>
+</html>
