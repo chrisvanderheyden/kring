@@ -2,9 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var rootpath = require('app-root-path');
-const photo_Lib = require('../modules/photolib');
-var photoLib = new photo_Lib();
-
+var photoLib = require('../modules/photolib');
 
 function shuffleArray(d) {
   for (var c = d.length - 1; c > 0; c--) {

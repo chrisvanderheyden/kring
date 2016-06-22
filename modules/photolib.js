@@ -16,8 +16,6 @@ function Photolib(options){
    
 }
 
-
-
 Photolib.prototype.shuffle = function(a){
   return a.slice(0).sort((a,b)=>{
       if(a.date > b.date)
@@ -42,9 +40,6 @@ Photolib.prototype.initialize = function(){
     this.all = this.getAll(); 
 }
   
-
-
-
 
 Photolib.prototype.loadFolders =  function() {
   var path = photoRootPath;
@@ -100,4 +95,4 @@ Photolib.prototype.getAll =  function() {
 }
 
 exports = Photolib;
-module.exports = Photolib;
+module.exports = new Photolib();

@@ -11,12 +11,14 @@
   </head>
   <body>
     <h1>De Kring</h1>
+     <div class="grid-floater" style="float: left; font-color: white "><h2>31-12-1975</h2></div>
     <div class="container">
     <div class="grid">
     <div class="grid-sizer"></div>
+   
       <% images.forEach(function(image) { %>
       <div  class="grid-item<% if ( Math.floor(Math.random() * randomness)  == 0 ) { console.log(randomness); %> grid-item--width2<%}%>"><div class="spacer">
-      <a href="<%= image.src %>" data-lightbox="image"><img src="<%= image.src %>" /></a></div></div>
+      <img src="<%= image.src %>" /></div></div>
       <% }); %>
 
      </div>
@@ -38,5 +40,5 @@ $grid.imagesLoaded().progress( function() {
   $grid.masonry('layout');
 });
   </script>  
-    <script src="/javascripts/lb.js"></script>
+
 </html>

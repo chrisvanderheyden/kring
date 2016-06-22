@@ -2,67 +2,47 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var rootpath = require('app-root-path');
-
-function shuffleArray(d) {
-  for (var c = d.length - 1; c > 0; c--) {
-    var b = Math.floor(Math.random() * (c + 1));
-    var a = d[c];
-    d[c] = d[b];
-    d[b] = a;
-  }
-  return d
-};
+var photoLib = require('../modules/photolib');
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-
+router.get('/', function(req, res, next){
   var randomness = -1;
+  var folder = 'all';
+  res.para
   if(req.query.r !== undefined)
-    randomness = req.query.r;
-    
-  var dir = rootpath + '/public/images/fotos/';
-  console.log(dir);
-
-  fs.readdir(  dir, function(e,f){
-    var img = [];
-    var error = "";
-
-    if(e===null){
-      f.forEach(function(file){
-        img.push( {src : '/images/fotos/' + file} );
-      });
-    }
-    else{
-      error = e;
-    }
-
-    res.render('index', {randomness: randomness, title: 'Express', images : shuffleArray(img), error: error });
-
-  });
+     randomness = req.query.r;
+  photoLib.getPhotos(folder, (e,photos)=>{   
+         
+      if(!e){
+        var images = photoLib.shuffle(photos);
+        res.render('index', {randomness: randomness, title: 'Dekring' , images : images, error: null });   
+      }
+      else{
+        res.render('index', {randomness: randomness, title: 'Dekring' , error: e.message });
+      } 
+  });    
 });
 
-router.get('/gallerij2', function(req, res, next) {
 
-  var dir = rootpath + '/public/images/fotos/';
-  console.log(dir);
-
-  fs.readdir(  dir, function(e,f){
-    var img = [];
-    var error = "";
-
-    if(e===null){
-      f.forEach(function(file){
-        img.push( {src : '/images/fotos/' + file} );
-      });
-    }
-    else{
-      error = e;
-    }
-
-    res.render('index2', { title: 'Express', images : shuffleArray(img), error: error });
-
-  });
+/* GET home page. */
+router.get('/gallerij/:folder', function(req, res, next) {
+  var randomness = -1;
+  var folder = req.params.folder;
+  res.para
+  if(req.query.r !== undefined)
+     randomness = req.query.r;
+  photoLib.getPhotos(folder, (e,photos)=>{   
+         
+      if(!e){
+        var images = photoLib.shuffle(photos);
+        res.render('index', {randomness: randomness, title: 'Dekring' + folder, images : images, error: null });   
+      }
+      else{
+        res.render('index', {randomness: randomness, title: 'Dekring' + folder, error: e.message });
+      } 
+  });    
 });
+
 
 module.exports = router;
