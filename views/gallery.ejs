@@ -7,20 +7,23 @@
     <script src="/javascripts/masonry.js"></script>
     <script src="/javascripts/imagesloaded.js"></script>
     <script src="/javascripts/ejs.js"></script>
-
-  </head>
-  <body>
-    <h1>De Kring</h1>     
-    <div class="container">
-      <div class="grid" id="gg">
-        <div class="grid-sizer"></div>
-      </div>
-    </div>
-    <button id="loadButton">Load more</button>    
-  </body>
 <script>
+function shuffle(arr){
+  return arr.sort((a,b)=>{
+      if(a.date > b.date)
+        return -1;
+      else if( a.date < b.date)
+        return 1;
+      else
+        return Math.random() > .5 ? -1 : 1;
+        
+      
+  });
+}
+
 function loadData(){
     $.get( "/api/photos", function( data ) {
+      data = shuffle(data);
       var grid =  $('#gg');
       var ejs = new EJS({url: '/views/gallery.ejs'});      
       var html = jQuery( ejs.render({images:data})); 
@@ -33,14 +36,13 @@ function loadData(){
 }
 
 $( document ).ready(function(){
-
-var $grid = $('.grid').masonry({
-   itemSelector: '.grid-item',
-  // use element for option
-  columnWidth: '.grid-sizer',  
-  percentPosition: true
-  
-});
+    var $grid = $('.grid').masonry({
+      itemSelector: '.grid-item',
+      // use element for option
+      columnWidth: '.grid-sizer',  
+      percentPosition: true
+      
+    });
 
     var win = $(window);
     win.scroll(function() {
@@ -50,6 +52,14 @@ var $grid = $('.grid').masonry({
     });
 	  loadData();
  });
-
 </script>
+  </head>
+  <body>
+    <h1>De Kring</h1>     
+    <div class="container">
+      <div class="grid" id="gg">
+        <div class="grid-sizer"></div>
+      </div>
+    </div>
+  </body>
 </html>
