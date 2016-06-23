@@ -8,6 +8,8 @@
     <script src="/javascripts/imagesloaded.js"></script>
     <script src="/javascripts/ejs.js"></script>
 <script>
+var isLoading = false;
+
 function shuffle(arr){
   return arr.sort( function(a,b){
       if(a.date > b.date)
@@ -33,7 +35,8 @@ function randomSize(data){
 }
 
 function loadData(){
-
+if(!isLoading)  {
+  isLoading = true;
     $.get( "/api/photos", function( data ) {     
       data = shuffle(data);
       randomSize(data);
@@ -44,8 +47,10 @@ function loadData(){
       html.imagesLoaded(function(){
         grid.append(html);
         grid.masonry('appended',html);
-      });                 
+      });  
+      isLoading = false;               
     });
+   }
 }
 
 $( document ).ready(function(){
@@ -59,7 +64,7 @@ $( document ).ready(function(){
 
     var win = $(window);
     win.scroll(function() {
-      if ($(document).height() - win.height() == win.scrollTop()) {
+      if ($(document).height() - win.height() <= win.scrollTop() + 500 ) {        
         loadData();
       }
     });
