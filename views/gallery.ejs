@@ -1,5 +1,4 @@
-
-
+<!DOCTYPE html>
 <html><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +12,7 @@
     <script src="/javascripts/masonry.js"></script>
     <script src="/javascripts/imagesloaded.js"></script>
     <script src="/javascripts/ejs.js"></script>
+    <script src="/javascripts/endless.js"></script>
     <script>
         var isLoading = false;
 
@@ -68,13 +68,19 @@
 
             });
 
-            var win = $(window);
-            win.scroll(function() {
-                if ($(document).height() - win.height() <= win.scrollTop() + 500 ) {
+            var wind = $(window);
+            var doc =  $(document);
+            
+            wind.scroll(function() {
+             console.log( doc.height() +' - ' +  wind.height() + ' ' + wind.scrollTop());
+                if (doc.height() - wind.height() <=  wind.scrollTop() + 200  ) {
+                   
                     loadData();
                 }
             });
+            
             loadData();
+
         });
     </script>
 </head><body>
@@ -116,6 +122,8 @@
     <div class="grid" id="gg">
         <div class="grid-sizer"></div>
     </div>
+    
 </div>
+<div id="bottom">bottom</div>
 </div>
 </body></html>
