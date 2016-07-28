@@ -18,12 +18,26 @@ html {
   font-size: 24px;
 }
 
-
-
-.gridcontainer { padding: 5px; background: white}
+.gridcontainer { margin: 20px; padding: 5px; background: white}
 .grid { background: white;  }
+
 .grid-sizer,
-.grid-item { width: 20%; background: white;  }
+.grid-item {width: 33%; background: white;  }
+
+
+@media screen and (min-width: 480px) and (max-width: 990px) {
+  /* 5 columns for larger screens */
+  .grid-sizer,
+  .grid-item {width: 25%; background: white;  }
+}
+
+@media screen and (min-width: 991px) {
+  /* 5 columns for larger screens */
+  .grid-sizer,
+  .grid-item {width: 20%; background: white;  }
+}
+
+
 .spacer img {
   width: 100%;
   -moz-transition: all 0.5s;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/javascripts/lib.js"></script>    
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    
     <script>
         var isLoading = false;
 
@@ -49,35 +50,9 @@
                     isLoading = false;
                 });
             }
-        }
-
-           
-        $( document ).ready(function(){
-
-            var $grid = $('.grid').masonry({
-                itemSelector: '.grid-item',
-                // use element for option
-                columnWidth: '.grid-sizer',
-                isAnimated : true,           
-                 percentPosition: true
-
-            });
-
-            var wind = $(window);
-            var doc =  $(document);
-            
-            wind.scroll(function() {
-             console.log( doc.height() +' - ' +  wind.height() + ' ' + wind.scrollTop());
-                if (doc.height() - wind.height() <=  wind.scrollTop() + 200  ) {
-                   
-                    loadData();
-                }
-            });
-            
-            loadData();
-
-        });
+        }              
     </script>
+    <%=head %>
 </head><body>
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -112,6 +87,6 @@
     </div>
 </div>
 <div class="container-fluid">
-
+<%= content %>
 </div>
 </body></html>
