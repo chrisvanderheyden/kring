@@ -18,23 +18,49 @@ html {
   font-size: 24px;
 }
 
-.gridcontainer { margin: 20px; padding: 5px; background: white}
-.grid { background: white;  }
+.gridcontainer { margin: 20px; padding: 5px; }
+.grid {   }
 
 .grid-sizer,
-.grid-item {width: 33%; background: white;  }
+.grid-item {width: 33%;  }
 
+.bg1 {
+background: url(/images/bg1.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+.bg2 {
+background: url(/images/bg2.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+.bg3 {
+background: url(/images/bg3.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
 
 @media screen and (min-width: 480px) and (max-width: 990px) {
   /* 5 columns for larger screens */
   .grid-sizer,
-  .grid-item {width: 25%; background: white;  }
+  .grid-item {width: 25%;  }
 }
 
 @media screen and (min-width: 991px) {
   /* 5 columns for larger screens */
   .grid-sizer,
-  .grid-item {width: 20%; background: white;  }
+  .grid-item {width: 20%;  }
 }
 
 
@@ -53,12 +79,13 @@ html {
 
 /* 2 columns */
 .grid-item--width2 { width: 40%; }
-.spacer {margin : 5px; overflow: hidden }
+.spacer {margin : 5px; overflow: hidden; padding:2px; background-color: white; }
+
 
 
 body {
   margin: 0;
- padding-top: 70px;
+ padding-top: 50px;
 }
 article,
 aside,

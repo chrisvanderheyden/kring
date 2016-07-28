@@ -1,28 +1,25 @@
 var express = require('express');
+var ejs = require('ejs');
+
 var router = express.Router();
 var fs = require('fs');
 var rootpath = require('app-root-path');
 var photoLib = require('../modules/photolib');
 
 
+
 /* GET home page. */
-router.get('/', function(req, res, next){
-  var randomness = -1;
-  var folder = 'all';
-  res.para
-  if(req.query.r !== undefined)
-     randomness = req.query.r;
-  photoLib.getPhotos(folder, (e,photos)=>{   
-         
-      if(!e){
-        var images = photoLib.shuffle(photos);
-        res.render('gallery', {randomness: randomness, title: 'Dekring' , images : images, error: null });   
-      }
-      else{
-        res.render('gallery', {randomness: randomness, title: 'Dekring' , error: e.message });
-      } 
-  });    
+router.get(['/', '/home', '/index.html'] , function(req, res, next){
+  res.render('index', {title: ' - Welkom'} );      
 });
+
+/* GET home page. */
+router.get(['/gallerij', ] , function(req, res, next){
+  res.render('gallery', {title: ' - het'} );      
+});
+
+
+
 
 
 /* GET home page. */
@@ -32,16 +29,16 @@ router.get('/gallerij/:folder', function(req, res, next) {
   res.para
   if(req.query.r !== undefined)
      randomness = req.query.r;
-  photoLib.getPhotos(folder, (e,photos)=>{   
-         
+  photoLib.getPhotos(folder, (e,photos)=>{
+
       if(!e){
         var images = photoLib.shuffle(photos);
-        res.render('gallery', {randomness: randomness, title: 'Dekring' + folder, images : images, error: null });   
+        res.render('gallery', {randomness: randomness, title: 'Dekring' + folder, images : images, error: null });
       }
       else{
         res.render('gallery', {randomness: randomness, title: 'Dekring' + folder, error: e.message });
-      } 
-  });    
+      }
+  });
 });
 
 

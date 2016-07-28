@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html><head>
+    <title><%= title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/javascripts/lib.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script>
+    function setNavTab(tab){
+        $('#nav' +tab).addClass('active');
+    }
+    </script>
+</head><body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><span class="light larger">WIJ VORMEN EEN</span><span class="bold larger"> KRING</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li id="navhome" class="">
+                    <a href="/index.html">home</a>
+                </li>
+                <li id="navproject" class="">
+                    <a href="/index.html">het project</a>
+                </li>
+                <li id="navgallery">
+                    <a href="/gallerij">gallerij</a>
+                </li>
+                <li id="navparticipate" class="">
+                    <a href="/index.html">deelnemen</a>
+                </li>
+                <li id="navcontact" >
+                    <a href="/contacteer-mij.html">contacteer</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
