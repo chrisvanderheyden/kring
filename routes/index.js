@@ -14,6 +14,10 @@ router.get(['/', '/home', '/index.html'] , function(req, res, next){
 });
 
 /* GET home page. */
+router.get(['/voorwoord'] , function(req, res, next){
+  res.render('voorwoord', {title: ' - voorwoord'} );      
+});
+/* GET home page. */
 router.get(['/gallerij', ] , function(req, res, next){
   res.render('gallery', {title: ' - het'} );      
 });

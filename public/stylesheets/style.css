@@ -18,11 +18,16 @@ html {
   font-size: 24px;
 }
 
+
 .gridcontainer { margin: 20px; padding: 5px; }
 .grid {   }
 
 .grid-sizer,
 .grid-item {width: 33%;  }
+
+
+
+
 
 .bg1 {
 background: url(/images/bg1.jpg) no-repeat center center fixed; 
@@ -30,7 +35,6 @@ background: url(/images/bg1.jpg) no-repeat center center fixed;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
 }
 
 .bg2 {
@@ -48,6 +52,13 @@ background: url(/images/bg3.jpg) no-repeat center center fixed;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+
+}
+
+p {
+font-size: 18px;
+line-height: 26px;
+color : black;
 
 }
 
