@@ -19,9 +19,14 @@ router.get(['/voorwoord'] , function(req, res, next){
 });
 /* GET home page. */
 router.get(['/gallerij', ] , function(req, res, next){
-  res.render('gallery', {title: ' - het'} );      
+  res.render('gallery', {title: ' - de kring'} );      
 });
 
+
+/* GET home page. */
+router.get(['/deelnemen', ] , function(req, res, next){
+  res.render('deelnemen', {title: ' - deelnemen'} );      
+});
 
 
 
