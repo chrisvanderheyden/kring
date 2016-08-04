@@ -3,6 +3,7 @@ var express = require('express')
   , passport          =     require('passport')
   , util              =     require('util')
   , FacebookStrategy  =     require('passport-facebook').Strategy
+  , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
   , config            =     require('./configuration/config')
   , path = require('path')
   , logger = require('morgan')
@@ -15,16 +16,18 @@ var app = express();
 
 
 passport.serializeUser(function(user, done) {
+  
   done(null, user);
 });
 passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
+//Set up facebook strategy
 passport.use(new FacebookStrategy({
-    clientID: config.facebook_api_key,
-    clientSecret:config.facebook_api_secret ,
-    callbackURL: config.callback_url,
+    clientID: config.facebookAuth.clientID,
+    clientSecret:config.facebookAuth.clientSecret ,
+    callbackURL: config.facebookAuth.callbackURL,
      passReqToCallback : true,
      profileFields: ['id', 'emails', 'name']
   },  
@@ -32,16 +35,40 @@ passport.use(new FacebookStrategy({
   function(req, accessToken, refreshToken, profile, done) {
     console.log('args');
     process.nextTick(function () {
-      //Check whether the User exists or not using profile.id
       if(config.use_database==='true')
       {
-         //Further code of Database.
+         
       }
       if(done !== undefined)
         return done(null, profile);
     });
   }
 ));
+
+
+//Set up google strategy
+passport.use(new GoogleStrategy({
+    clientID: config.googleAuth.clientID,
+    clientSecret:config.googleAuth.clientSecret ,
+    callbackURL: config.googleAuth.callbackURL
+  },  
+
+  function (accessToken, refreshToken, profile, done) {
+    console.log('args');
+    process.nextTick(function () {
+      if(config.use_database==='true')
+      {
+         
+      }
+      if(done !== undefined)
+        return done(null, profile);
+    });
+  }
+));
+
+
+
+
 
 
 // view engine setup

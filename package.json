@@ -13,10 +13,13 @@
     "ejs": "~2.3.3",
     "express": "~4.13.1",
     "express-session": "^1.14.0",
+    "install": "^0.8.1",
     "mongoose": "^4.5.8",
     "morgan": "~1.6.1",
+    "npm": "^3.10.5",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
     "serve-favicon": "~2.3.0"
   }
 }

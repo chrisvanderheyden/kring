@@ -4,7 +4,7 @@ var express = require('express'),
     router = express.Router();
 
 
-
+// facebook authentication 
 router.get('/facebook', passport.authenticate('facebook',  { scope : ['public_profile', 'email'] }));
 
 router.get('/facebook/callback',
@@ -16,6 +16,19 @@ router.get('/facebook/callback',
 
     res.redirect('/');
   });
+
+
+//google authentication 
+ router.get('/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+// the callback after google has authenticated the user
+router.get('/google/callback',
+        passport.authenticate('google', {
+                successRedirect : '/deelnemen',
+                failureRedirect : '/'
+        }));
+
+
 
 router.get('/logout', function(req, res){
   req.logout();
