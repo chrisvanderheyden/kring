@@ -1,15 +1,27 @@
 
 <form class="dform">
+    <% if(user){ %>
     <div class="form-group">
         <label for="inputEmail">Email</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+        <input type="email" disabled="true" class="form-control" id="inputEmail"  value="<%= user.email %>" >        
     </div>
     <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <label for="inputName">Naam</label>
+        <input type="text" disabled="true" class="form-control" id="inputName"  value="<%= user.displayName %>" >        
     </div>
-    <div class="checkbox">
-        <label><input type="checkbox"> Remember me</label>
+    <% } else { %>
+     <div class="form-group">
+        <label for="inputEmail">Email</label>
+        <input type="email" disabled="false" class="form-control" id="inputEmail" placeholder="Email"  >        
     </div>
+    <div class="form-group">
+        <label for="inputName">Naam</label>
+        <input type="text" disabled="false" class="form-control" id="inputName" placeholder="Name"  >        
+    </div>
+    <div class="form-group">
+    <a href="/auth/facebook" class="btn btn-primary"> <i class="fa fa-facebook-official" aria-hidden="true"></i>  login with facebook</a>
+      
+     </div>
+     <% } %>
     <button type="submit" class="btn btn-primary">Login</button>
 </form>

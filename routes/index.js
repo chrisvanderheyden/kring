@@ -10,22 +10,22 @@ var photoLib = require('../modules/photolib');
 
 /* GET home page. */
 router.get(['/', '/home', '/index.html'] , function(req, res, next){
-  res.render('index', {title: ' - Welkom'} );      
+  res.render('index', {title: ' - Welkom', user: req.user} );      
 });
 
 /* GET home page. */
 router.get(['/voorwoord'] , function(req, res, next){
-  res.render('voorwoord', {title: ' - voorwoord'} );      
+  res.render('voorwoord', {title: ' - voorwoord', user: req.user} );      
 });
 /* GET home page. */
 router.get(['/gallerij', ] , function(req, res, next){
-  res.render('gallery', {title: ' - de kring'} );      
+  res.render('gallery', {title: ' - de kring', user: req.user} );      
 });
 
 
 /* GET home page. */
 router.get(['/deelnemen', ] , function(req, res, next){
-  res.render('deelnemen', {title: ' - deelnemen'} );      
+  res.render('deelnemen', {title: ' - deelnemen', user: req.user} );      
 });
 
 

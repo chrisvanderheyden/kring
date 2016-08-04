@@ -1,19 +1,53 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var api = require('./routes/api')
+var express = require('express')
+  , session           =     require('express-session')
+  , passport          =     require('passport')
+  , util              =     require('util')
+  , FacebookStrategy  =     require('passport-facebook').Strategy
+  , config            =     require('./configuration/config')
+  , path = require('path')
+  , logger = require('morgan')
+  , cookieParser = require('cookie-parser')
+  , bodyParser = require('body-parser')
+  , favicon = require('serve-favicon');
 
 var app = express();
+
+
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+passport.use(new FacebookStrategy({
+    clientID: config.facebook_api_key,
+    clientSecret:config.facebook_api_secret ,
+    callbackURL: config.callback_url,
+     passReqToCallback : true,
+     profileFields: ['id', 'emails', 'name']
+  },  
+
+  function(req, accessToken, refreshToken, profile, done) {
+    console.log('args');
+    process.nextTick(function () {
+      //Check whether the User exists or not using profile.id
+      if(config.use_database==='true')
+      {
+         //Further code of Database.
+      }
+      if(done !== undefined)
+        return done(null, profile);
+    });
+  }
+));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -23,10 +57,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: 'sdqfqsdfqsdf' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/api', api);
+app.use('/', require('./routes/index'));
+app.use('/auth',  require('./routes/auth'));
+app.use('/api',  require('./routes/api'));
 
 
 

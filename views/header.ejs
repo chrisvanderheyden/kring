@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="nl"><head>
     <title><%= title %></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/javascripts/lib.js"></script>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' >
+    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
     <script>
     function setNavTab(tab){
         $('#nav' +tab).addClass('active');
     }
     </script>
+    
 </head><body>
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -39,7 +41,21 @@
                 <li id="navcontact" >
                     <a href="/contacteer-mij.html">contacteer</a>
                 </li>
+              <% if (user) { %>
+                 <li id="navhome" class="">
+                    <a href="/auth/logout"><%= user.displayName || '' %></a>
+                </li>
+           
+                <% } else { %>
+                 <li id="navhome" class="">
+                    <a href="/auth/facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                </li>
+                <% } %>
+              
+                
             </ul>
+
         </div>
+        
     </div>
 </div>
