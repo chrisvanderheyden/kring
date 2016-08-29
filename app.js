@@ -35,7 +35,10 @@ passport.use(new FacebookStrategy({
   function(req, accessToken, refreshToken, profile, done) {
     console.log('args');
     process.nextTick(function () {
+      profile.displayName = profile.name.givenName + ' ' + profile.name.familyName;
+      profile.email = profile.emails[0].value;
       console.log(JSON.stringify(profile));
+
       if(config.use_database==='true')
       {
          
@@ -59,6 +62,9 @@ passport.use(new GoogleStrategy({
     process.nextTick(function () {
       console.log(JSON.stringify(profile));
 
+
+      profile.displayName = profile.name.givenName + ' ' + profile.name.familyName;
+      profile.email = profile.emails[0].value;
       if(config.use_database==='true')
       {
          
