@@ -3,6 +3,8 @@ var router = express.Router();
 var fs = require('fs');
 var rootpath = require('app-root-path');
 var photoLib = require('../modules/photolib');
+var sessieLib = require('../modules/sessielib');
+
 
 function shuffleArray(d) {
   for (var c = d.length - 1; c > 0; c--) {
@@ -61,4 +63,11 @@ router.get('/folders', function(req,res,next){
   res.json(folders);
 
 });
+
+
+router.get('/sessies', function(req,res,next){
+  sessieLib.getSessies(req,res);
+
+});
+
 module.exports = router;

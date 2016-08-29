@@ -35,6 +35,7 @@ passport.use(new FacebookStrategy({
   function(req, accessToken, refreshToken, profile, done) {
     console.log('args');
     process.nextTick(function () {
+      console.log(JSON.stringify(profile));
       if(config.use_database==='true')
       {
          
@@ -56,6 +57,8 @@ passport.use(new GoogleStrategy({
   function (accessToken, refreshToken, profile, done) {
     console.log('args');
     process.nextTick(function () {
+      console.log(JSON.stringify(profile));
+
       if(config.use_database==='true')
       {
          

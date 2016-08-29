@@ -99,3 +99,12 @@ var e=c.find(".active:last a"),f=a.Event("hide.bs.tab",{relatedTarget:b[0]}),g=a
                 });
             }
         }
+
+
+        function loadSessies(){
+             $.get( "/api/sessies", function( data ) {
+                var ejs = new EJS({url: '/views/sessies.ejs'});
+                var content = jQuery( ejs.render({sessies:data}));
+                $('#sessiecontainer').html(content);
+             });
+        }
